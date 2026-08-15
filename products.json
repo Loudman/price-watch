@@ -6,11 +6,25 @@
     "target_price": 499,
     "currency": "EUR",
     "css_selector": "",
-    "last_price": 489.0,
+    "last_price": 489,
     "last_price_method": "JSON-LD (schema.org)",
     "last_checked": "2026-08-15T17:44:19.481376+00:00",
     "status": "no_alvo",
     "last_error": "",
     "notified_below_target": true
+  },
+  {
+    "id": "f9bcf87e-cd1c-49f2-8f7d-38f5058b379d",
+    "name": "Kukirin G2",
+    "url": "https://www.kukirin-scooter.com/products/kukirin-g2-electric-scooter",
+    "target_price": 450,
+    "currency": "EUR",
+    "css_selector": "",
+    "last_price": null,
+    "last_price_method": "",
+    "last_checked": null,
+    "status": "pendente",
+    "last_error": "",
+    "notified_below_target": false
   }
 ]
