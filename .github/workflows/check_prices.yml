@@ -1,0 +1,49 @@
+name: Verificar preços
+
+on:
+  schedule:
+    # Corre a cada 4 horas. Ajusta a expressão cron se quiseres outra cadência.
+    - cron: "0 */4 * * *"
+  workflow_dispatch: {}   # permite correr manualmente em Actions -> Run workflow
+  push:
+    paths:
+      - "products.json"   # corre também sempre que a lista de produtos é atualizada pela interface
+
+permissions:
+  contents: write
+
+concurrency:
+  group: price-watcher
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Verificar preços
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python check_prices.py
+
+      - name: Guardar resultados no repositório
+        run: |
+          git config user.name "price-watcher-bot"
+          git config user.email "actions@github.com"
+          git add products.json
+          git diff --quiet --cached || git commit -m "Atualiza preços verificados [skip ci]"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push
