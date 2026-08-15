@@ -12,5 +12,19 @@
     "status": "no_alvo",
     "last_error": "",
     "notified_below_target": true
+  },
+  {
+    "id": "580f1d67-fa58-4d08-a1a9-3af7d0be3a30",
+    "name": "T-Shirt Boss",
+    "url": "https://www.elcorteingles.pt/moda-homem/A56276934-t-shirt-de-manga-curta/?stype=past_search_multi&color=Azul-escuro",
+    "target_price": 35,
+    "currency": "EUR",
+    "css_selector": "#aside > div > div:nth-child(2) > div.product_detail-aside--price_container > section > div > div",
+    "last_price": null,
+    "last_price_method": "",
+    "last_checked": null,
+    "status": "pendente",
+    "last_error": "",
+    "notified_below_target": false
   }
 ]
