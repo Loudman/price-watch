@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vigia de Preços</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2230%22 fill=%22%23E4A93B%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanline" aria-hidden="true"></div>
+
+<header class="hdr">
+  <div class="hdr-inner">
+    <div class="brand">
+      <span class="beacon-mark" aria-hidden="true"><span class="beacon-dot"></span></span>
+      <div class="brand-text">
+        <h1>Vigia de Preços</h1>
+        <p class="tagline">Aponta um produto. Nós ficamos a vigiar o preço.</p>
+      </div>
+    </div>
+    <button id="btn-settings" class="btn btn-ghost" type="button">Ligação ao GitHub</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="panel-settings" class="card panel-settings hidden">
+    <h2>Ligação ao repositório</h2>
+    <p class="muted">
+      Esta interface não tem servidor próprio — lê e escreve diretamente o ficheiro
+      <code>products.json</code> no teu repositório GitHub, através da API do GitHub.
+      O token fica guardado só neste browser (localStorage), nunca é enviado para
+      mais lado nenhum além do próprio GitHub.
+    </p>
+    <div class="grid-2">
+      <label>
+        Utilizador/Organização GitHub
+        <input id="cfg-owner" type="text" placeholder="ex: Loudman" autocomplete="off">
+      </label>
+      <label>
+        Nome do repositório
+        <input id="cfg-repo" type="text" placeholder="ex: price-watcher" autocomplete="off">
+      </label>
+      <label>
+        Branch
+        <input id="cfg-branch" type="text" placeholder="main" autocomplete="off">
+      </label>
+      <label>
+        Token de acesso pessoal (fine-grained)
+        <input id="cfg-token" type="password" placeholder="github_pat_..." autocomplete="off">
+      </label>
+    </div>
+    <p class="muted small">
+      Cria um token em GitHub → Settings → Developer settings → Fine-grained tokens →
+      Generate new token. Limita-o a este repositório e dá-lhe permissão
+      <strong>Contents: Read and write</strong>. Define uma data de expiração razoável.
+    </p>
+    <div class="row-actions">
+      <button id="btn-save-settings" class="btn btn-primary" type="button">Guardar ligação</button>
+      <span id="settings-status" class="status-text"></span>
+    </div>
+  </section>
+
+  <section class="card form-add">
+    <h2>Vigiar um novo produto</h2>
+    <form id="form-add">
+      <div class="grid-2">
+        <label>
+          Nome
+          <input id="f-name" type="text" placeholder="ex: Ténis X, tamanho 42" required>
+        </label>
+        <label>
+          URL do produto
+          <input id="f-url" type="url" placeholder="https://loja.exemplo.com/produto" required>
+        </label>
+        <label>
+          Preço-alvo (avisa quando ≤ este valor)
+          <input id="f-target" type="number" step="0.01" min="0" placeholder="49.99" required>
+        </label>
+        <label>
+          Moeda
+          <select id="f-currency">
+            <option value="EUR" selected>€ EUR</option>
+            <option value="USD">$ USD</option>
+            <option value="GBP">£ GBP</option>
+            <option value="BRL">R$ BRL</option>
+          </select>
+        </label>
+      </div>
+
+      <details class="advanced">
+        <summary>Opções avançadas — seletor CSS manual</summary>
+        <p class="muted small">
+          Se a deteção automática do preço falhar ou vier errada para este site,
+          podes apontar exatamente onde está o preço: no site do produto, clica com
+          o botão direito no preço → Inspecionar → botão direito no elemento
+          destacado → Copy → Copy selector. Cola esse valor aqui.
+        </p>
+        <label>
+          Seletor CSS (opcional)
+          <input id="f-selector" type="text" placeholder="ex: .price-current, #priceblock_ourprice">
+        </label>
+      </details>
+
+      <div class="row-actions">
+        <button type="submit" class="btn btn-primary">Adicionar à vigia</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="list-section">
+    <div class="list-head">
+      <h2>Produtos vigiados <span id="count-badge" class="count-badge">0</span></h2>
+      <button id="btn-refresh" class="btn btn-ghost" type="button">↻ Atualizar</button>
+    </div>
+    <p id="empty-state" class="empty-state hidden">
+      Ainda não vigias nenhum produto. Adiciona um acima — ou, se já configuraste a
+      ligação ao GitHub, os produtos aparecem aqui assim que o Action correr pela
+      primeira vez.
+    </p>
+    <div id="product-list" class="product-list"></div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <p>Corre no GitHub Actions, grátis. Alertas via Telegram. Sem servidores, sem custos.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
