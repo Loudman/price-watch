@@ -1,5 +1,8 @@
 # Vigia de Preços
 
+https://loudman.github.io/price-watch/
+
+
 Interface gráfica (grátis, no GitHub Pages) para vigiares o preço de qualquer
 produto online. Quando o preço atinge o teu alvo (ou desce abaixo dele),
 recebes um alerta no Telegram.
