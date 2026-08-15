@@ -6,9 +6,9 @@
     "target_price": 499,
     "currency": "EUR",
     "css_selector": "",
-    "last_price": 489,
+    "last_price": 489.0,
     "last_price_method": "JSON-LD (schema.org)",
-    "last_checked": "2026-08-15T17:41:21.745002+00:00",
+    "last_checked": "2026-08-15T17:44:19.481376+00:00",
     "status": "no_alvo",
     "last_error": "",
     "notified_below_target": true
