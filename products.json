@@ -6,9 +6,9 @@
     "target_price": 499,
     "currency": "EUR",
     "css_selector": "",
-    "last_price": 489,
+    "last_price": 489.0,
     "last_price_method": "JSON-LD (schema.org)",
-    "last_checked": "2026-08-15T17:29:45.934700+00:00",
+    "last_checked": "2026-08-15T17:34:10.577940+00:00",
     "status": "no_alvo",
     "last_error": "",
     "notified_below_target": true
@@ -22,9 +22,9 @@
     "css_selector": "",
     "last_price": null,
     "last_price_method": "",
-    "last_checked": null,
-    "status": "pendente",
-    "last_error": "",
+    "last_checked": "2026-08-15T17:34:10.577940+00:00",
+    "status": "error",
+    "last_error": "Preço não encontrado — considera definir um seletor CSS manual.",
     "notified_below_target": false
   }
 ]
