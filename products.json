@@ -8,7 +8,7 @@
     "css_selector": "",
     "last_price": 489.0,
     "last_price_method": "JSON-LD (schema.org)",
-    "last_checked": "2026-08-22T12:43:48.301155+00:00",
+    "last_checked": "2026-08-22T16:27:32.205832+00:00",
     "status": "no_alvo",
     "last_error": "",
     "notified_below_target": true
@@ -22,9 +22,9 @@
     "css_selector": "",
     "last_price": 489.0,
     "last_price_method": "meta tag (meta[property=\"og:price:amount\"])",
-    "last_checked": "2026-08-22T12:43:48.301155+00:00",
-    "status": "error",
-    "last_error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\nnavigating to \"https://www.kukirin-scooter.com/products/kukirin-g2-electric-scooter\", waiting until \"networkidle\"\n",
+    "last_checked": "2026-08-22T16:27:32.205832+00:00",
+    "status": "acima_do_alvo",
+    "last_error": "",
     "notified_below_target": false
   }
 ]
